@@ -1,0 +1,206 @@
+<?xml version="1.0"?>
+
+<robot name="lese" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://wiki.ros.org/urdf/XML">
+
+        <!-- Include Gazebo Parameters -->
+        <xacro:include filename="$(find lese_describtion)/urdf/lese_gazebo.xacro" />
+
+        <link name="base_footprint"/>
+    
+        <link name="base">
+            <inertial>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <mass value="0.5"/>
+            <inertia ixx= "0"
+            ixy = "0"
+            iyy = "0"
+            ixz= "0"
+            iyz = "0"
+            izz = "0"/></inertial>
+            <visual>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese base modified.stl"/>
+            </geometry>
+            <material name="gray">
+                <color rgba=".7 .7 .7 1" />
+            </material>
+            </visual>
+            <collision>
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese base modified.stl"/>
+            </geometry>
+            </collision>
+        </link>
+
+    <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base"/>
+    <origin rpy="0 0 0" xyz="0 0 0.093"/>
+    </joint>
+
+    <!-- 
+    links for right front wheel
+    -->    
+    <link name="right_wheel">
+        <inertial>
+        <mass value="0.5"/>
+        <inertia ixx= "0"
+        ixy = "0"
+        iyy = "0"
+        ixz= "0"
+        iyz = "0"
+        izz = "0"/></inertial>
+
+        <visual>
+
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese wheel modified.stl"/>
+            </geometry>
+
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese wheel modified.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- 
+    links for left front wheel
+    -->    
+    <link name="left_wheel">
+        <inertial>
+        <mass value="0.5"/>
+        <inertia ixx= "0"
+        ixy = "0"
+        iyy = "0"
+        ixz= "0"
+        iyz = "0"
+        izz = "0"/></inertial>
+
+        <visual>
+
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese wheel modified.stl"/>
+            </geometry>
+
+            <material name="black">
+                <color rgba="0 0 0 1" />
+            </material>
+
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese wheel modified.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- 
+        link for caster wheel
+    -->
+    <link name="caster_wheel">
+        <inertial>
+        <mass value="0.5"/>
+        <inertia ixx= "0"
+        ixy = "0"
+        iyy = "0"
+        ixz= "0"
+        iyz = "0"
+        izz = "0"/></inertial>
+
+        <visual>
+
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese caster ball modified.stl"/>
+            </geometry>
+
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" />
+            </material>
+
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese caster ball modified.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- 
+        link for hat
+    -->
+    <link name="hat">
+        <inertial>
+        <mass value="0.5"/>
+        <inertia ixx= "0"
+        ixy = "0"
+        iyy = "0"
+        ixz= "0"
+        iyz = "0"
+        izz = "0"/></inertial>
+
+        <visual>
+
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese hat modified.stl"/>
+            </geometry>
+
+            <material name="silver">
+                <color rgba="0.75 0.75 0.75 1" />
+            </material>
+
+        </visual>
+        <collision>
+            <geometry>
+                <mesh filename="package://lese_describtion/meshes/lese hat modified.stl"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- 
+        joint for right wheel
+    -->
+        <joint name="right_wheel_joint" type="continuous">
+        <origin rpy="0 0 0" xyz="0.07 -0.08 0.0425"/>
+        <parent link="base"/>
+        <child link="right_wheel"/>
+        <axis xyz="0 0 1 0"/>
+        </joint>
+
+    <!--
+        joint for left wheel
+    -->
+        <joint name="left_wheel_joint" type="continuous">
+        <origin rpy="3.14 0 0" xyz="-0.07 -0.08 0.0425"/>
+        <parent link="base"/>
+        <child link="left_wheel"/>
+        <axis xyz="0 0 -1 0"/>
+        </joint>
+
+    <!--
+        joint for caster wheel
+    -->
+        <joint name="caster_wheel_joint" type="continuous">
+        <origin rpy="0 0 0" xyz="0 0.09 0.0218"/>
+        <parent link="base"/>
+        <child link="caster_wheel"/>
+        <axis xyz="1 0 0 0"/>
+        </joint>
+
+    <!-- 
+        joint for hat
+    -->
+        <joint name="hat_joint" type="fixed">
+        <origin rpy="0 0 0" xyz="0 -0.02 0.11"/>
+        <parent link="base"/>
+        <child link="hat"/>
+        </joint>
+
+
+</robot>
