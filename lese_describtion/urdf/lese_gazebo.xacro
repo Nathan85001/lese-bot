@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+<robot name="lese" xmlns:xacro="http://ros.org/wiki/xacro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://wiki.ros.org/urdf/XML">
+    <!-- Include Gazebo Parameters -->
+    <xacro:include filename="$(find lese_describtion)/urdf/lese_gazebo.xacro" />
+
+    <!-- Include ros2_control Plugins -->
+    <!-- <xacro:include filename="$(find lese_describtion)/urdf/lese_ros2_control.xacro" /> -->
+
+    <link name="base">
+        <inertial>
+        <origin xyz="0 0 0.1" rpy="0 0 0" />
+        <mass value="8.34"/>
+        <inertia ixx= "2386468.63e-7"
+        ixy = "-261456.79e-7"
+        iyy = "4827722.72e-7"
+        ixz= "76941.00e-7"
+        iyz = "57814.62e-7"
+        izz = "3252219.31e-7"/></inertial>
+        <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://amr_description/meshes/Base_final.stl"/>
+        </geometry>
+        <material name="gray">
+            <color rgba=".7 .7 .7 1" />
+        </material>
+        </visual>
+        <collision>
+        <geometry>
+            <mesh filename="package://amr_description/meshes/Base_final.stl"/>
+        </geometry>
+        </collision>
+    </link>
+    
+</robot>
